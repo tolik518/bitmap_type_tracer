@@ -3,18 +3,18 @@
 
 `bitmap_type_tracer` is a utility tool for generating images using a provided font bitmap and a set of configuration parameters.  
 
-## Features:
+## Features
 - Generate images from a font bitmap using a custom sequence and text.
 - Load and save font configurations for reuse.
 - Customize margins and threshold for more precise image generation.
 
-## Getting Started:
+## Getting Started
 Ensure you have the `image` and `serde_derive` crates as dependencies in your project.
 
-### Font Source:
+### Font Source
 The fonts used in this project are sourced from [ianhan/BitmapFonts](https://github.com/ianhan/BitmapFonts/tree/main) repository.
 
-### How to Run:
+### How to Run
 
 #### Specifying Arguments Directly:
 
@@ -24,7 +24,7 @@ bitmap_type_tracer <path_to_font_image> <sequence> <text> <chars_per_row> [--top
 
 example:
 ```bash
-bitmap_type_tracer "images/4138906397_0dc616813b_o.png" " !\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " "Bitmap Type Tracer" 10 --threshold 1 --save-json
+bitmap_type_tracer "examples/4138906397_0dc616813b_o.png" " !\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " "Bitmap Type Tracer" 10 --threshold 1 --save-json
 ```
 
 #### Using Font Configuration:
@@ -36,7 +36,7 @@ bitmap_type_tracer <path_to_font_image> <text>
 example:
 ```bash
 ```bash
-bitmap_type_tracer "images/4138906397_0dc616813b_o.png" "Bitmap Type Trace"
+bitmap_type_tracer "examples/4138906397_0dc616813b_o.png" "Bitmap Type Trace"
 ```
 
 This command will generate an image using a previously saved font configuration for the provided font image and the specified text.
@@ -66,7 +66,7 @@ This command will generate an image using a previously saved font configuration 
 
 - `--save-json`: Save the provided configuration as a JSON file, making it easier to reuse in the future.
 
-## Modules:
+## Modules
 
 - `main.rs`: The main driver of the application, handling command line arguments and invoking image generation.
 
@@ -74,6 +74,47 @@ This command will generate an image using a previously saved font configuration 
 
 - `image_processing.rs`: Contains the core image processing functions. (This module was mentioned but its content was not provided in the given code.)
 
-## Contributions:
+## Examples
+
+_/examples/4138906397_0dc616813b_o.png_
+![](./examples/4138906397_0dc616813b_o.png)
+```bash
+bitmap_font_tool examples/4138906397_0dc616813b_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
+```
+![](./examples/4138906397_0dc616813b_o.png_tolik518.png)
+
+_/examples/4138906425_29cbc92641_o.png_
+![](./examples/4138906425_29cbc92641_o.png)
+```bash
+bitmap_font_tool examples/4138906425_29cbc92641_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
+```
+![](./examples/4138906425_29cbc92641_o.png_tolik518.png)
+
+_/examples/FONT34.png_  
+![](./examples/FONT34.png)
+```bash
+bitmap_font_tool examples/FONT34.png " \!      ()  , . 0123456789:; - ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 20 --bottom 150 --threshold 20
+```
+![](./examples/FONT34.png_tolik518.png)
+
+_/examples/font228.png_  
+![](./examples/font228.png)
+```bash
+bitmap_font_tool examples/font228.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ>.: " tolik518 10 --threshold 0
+```
+Since the number are missing from the sequence, they are not generated in the image and it tries to fill the space with the background.   
+The background was not recognized properly, so it was filled with the brown instead of black.  
+![](./examples/font228.png_tolik518.png)  
+  
+_/examples/font239r.png_  
+![](./examples/font239r.png)  
+```bash  
+bitmap_font_tool examples/font239r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ()\!?.,’  " tolik518 7 --bottom 4 --threshold 1
+```
+Since the number are missing from the sequence, they are not generated in the image and it tries to fill the space with the background, but the threshold is set to 1, so it doesn't fill the space with the transparent background since it recognized the black background.  
+![](./examples/font239r.png_tolik518.png)  
+
+
+## Contributions
 
 Feel free to contribute by opening issues or pull requests. All feedback is welcome!

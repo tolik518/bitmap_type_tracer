@@ -1,0 +1,10 @@
+{
+  "font_name": "FONT34",
+  "sequence": " !      ()  , . 0123456789:; - ? ABCDEFGHIJKLMNOPQRSTUVWXYZ ",
+  "chars_per_row": 20,
+  "top_margin": 0,
+  "bottom_margin": 150,
+  "left_margin": 0,
+  "right_margin": 0,
+  "threshold": 20
+}
