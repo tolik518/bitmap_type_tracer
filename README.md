@@ -114,6 +114,37 @@ bitmap_font_tool examples/font239r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ()\!?.,’  " 
 Since the number are missing from the sequence, they are not generated in the image and it tries to fill the space with the background, but the threshold is set to 1, so it doesn't fill the space with the transparent background since it recognized the black background.  
 ![](./examples/font239r.png_tolik518.png)  
 
+_/examples/font244r.png_   
+![](./examples/font244r.png)   
+```bash  
+bitmap_font_tool examples/font244r.png "ALW6BMX7CNY8DOZ9EP*\!FQ0?GR1.HS2 IT3 JU4 KV5 " tolik518 4 --threshold 30 
+```  
+We needed a threshold of 30 to remove the black background.   
+![](./examples/font244r.png_tolik518.png)  
+
+_/examples/font248r.png_  
+![](./examples/font248r.png)  
+```bash
+bitmap_font_tool examples/font248r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 \!?." tolik518 20 --threshold 60
+```
+To have a better result, we needed a threshold of 60 to remove the black background.  
+![](./examples/font248r.png_tolik518.png)  
+
+_/examples/MEGAD.png_  
+![](./examples/MEGAD.png)  
+```bash
+bitmap_font_tool examples/MEGAD.png "'() +,-. 0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ     ! =?     " tolik518 10 --bottom 10 --threshold 1
+```  
+In this example, we needed to add a bottom margin of 10 for the characters to align properly.  
+![](./examples/MEGAD.png_tolik518.png)  
+
+_/examples/MEGAD2.png_  
+![](./examples/MEGAD2.png)  
+```bash
+bitmap_font_tool examples/MEGAD2.png "AGMSY+:4BHNTZ\!;5CIOU.?06DJPV;(17EKQW\")28FLRX-'39" tolik518 8 --bottom 3 --threshold 1
+```  
+![](./examples/MEGAD2.png_tolik518.png)  
+
 
 ## Contributions
 
