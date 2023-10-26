@@ -1,5 +1,6 @@
 # ![bitmap_type_tracer](./logo.png)
-
+![Crates.io](https://img.shields.io/crates/v/bitmap_type_tracer)
+![Crates.io](https://img.shields.io/crates/d/bitmap_type_tracer)
 
 `bitmap_type_tracer` is a utility tool for generating images using a provided font bitmap and a set of configuration parameters.  
 
@@ -9,7 +10,6 @@
 - Customize margins and threshold for more precise image generation.
 
 ## Getting Started
-Ensure you have the `image` and `serde_derive` crates as dependencies in your project.
 
 ### Font Source
 The fonts used in this project are sourced from [ianhan/BitmapFonts](https://github.com/ianhan/BitmapFonts/tree/main) repository.
