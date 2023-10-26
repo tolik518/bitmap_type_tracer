@@ -14,6 +14,15 @@ Ensure you have the `image` and `serde_derive` crates as dependencies in your pr
 ### Font Source
 The fonts used in this project are sourced from [ianhan/BitmapFonts](https://github.com/ianhan/BitmapFonts/tree/main) repository.
 
+
+### Installation
+Make sure you have [Rust](https://www.rust-lang.org/tools/install) installed on your system.  
+Then, run the following command to install the tool:
+```bash 
+cargo install bitmap_type_tracer --locked
+```
+
+
 ### How to Run
 
 #### Specifying Arguments Directly:
