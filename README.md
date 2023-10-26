@@ -2,7 +2,7 @@
 ![Crates.io](https://img.shields.io/crates/v/bitmap_type_tracer)
 ![Crates.io](https://img.shields.io/crates/d/bitmap_type_tracer)
 
-`bitmap_type_tracer` is a utility tool for generating images using a provided font bitmap and a set of configuration parameters.  
+`bitmap_type_tracer` is a utility tool for generating text-images using a provided bitmap-font (and a set of configuration parameters).  
 
 ## Features
 - Generate images from a font bitmap using a custom sequence and text.
