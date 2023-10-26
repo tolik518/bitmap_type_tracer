@@ -1,4 +1,4 @@
-# [bitmap_type_tracer](logo.png)
+# ![bitmap_type_tracer](./logo.png)
 
 
 `bitmap_type_tracer` is a utility tool for generating images using a provided font bitmap and a set of configuration parameters.  
