@@ -2,21 +2,12 @@ extern crate image;
 extern crate serde_derive;
 
 use std::env;
-use image::{ImageBuffer, GenericImageView};
-use std::fs::File;
-use std::io::Read;
-use std::fs::write;
+mod font_config;
+mod image_processing;
 
-#[derive(serde_derive::Serialize, serde_derive::Deserialize)]
-struct FontConfig {
-    font_name: String,
-    sequence: String,
-    chars_per_row: u32,
-    top_margin: u32,
-    bottom_margin: u32,
-    left_margin: u32,
-    right_margin: u32
-}
+use font_config::{FontConfig, load_font_config, save_font_config};
+use image_processing::generate_image;
+
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -45,25 +36,6 @@ fn generate_image_from_config(args: &[String]) {
         config.right_margin
     );
 }
-
-fn load_font_config(font_path: &str) -> FontConfig {
-    let config_name = font_path.strip_suffix(".png").expect("Invalid font path").to_owned() + ".json";
-    let mut file = File::open(config_name).expect("Failed to open font config");
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).expect("Failed to read font config");
-
-    serde_json::from_str(&contents).expect("Failed to parse font config")
-}
-
-fn save_font_config(font_path: &str, config: &FontConfig) {
-    let config_name = font_path.strip_suffix(".png").expect("Invalid font path").to_owned() + ".json";
-
-    // Use to_string_pretty for a prettified JSON format.
-    let json_content = serde_json::to_string_pretty(&config).expect("Failed to serialize font config");
-
-    write(&config_name, json_content).expect("Failed to save font config");
-}
-
 
 fn generate_image_from_args(args: &[String]) {
     if !validate_args(&args) {
@@ -137,34 +109,3 @@ fn parse_optional_args(args: &[String]) -> (u32, u32, u32, u32) {
     (top_margin, bottom_margin, left_margin, right_margin)
 }
 
-fn generate_image(
-    font_path: &str,
-    sequence: &str,
-    text: &str,
-    chars_per_row: u32,
-    top_margin: u32,
-    bottom_margin: u32,
-    left_margin: u32,
-    right_margin: u32
-) {
-    let font_image = image::open(font_path).expect("Failed to open font image");
-
-    let char_width = (font_image.width() - (left_margin + right_margin)) / chars_per_row;
-    let char_height = (font_image.height() - (top_margin + bottom_margin)) / (sequence.len() as u32 / chars_per_row);
-
-    let output_width = char_width * text.len() as u32;
-    let mut output_image = ImageBuffer::new(output_width, char_height);
-
-    for (idx, character) in text.chars().enumerate() {
-        if let Some(pos) = sequence.find(character) {
-            let x_offset = left_margin + (pos as u32 % chars_per_row) * char_width;
-            let y_offset = top_margin + (pos as u32 / chars_per_row) * char_height;
-            let section = font_image.view(x_offset, y_offset, char_width, char_height);
-            image::imageops::replace(&mut output_image, &section, idx as u32 * char_width, 0);
-        } else {
-            eprintln!("Character '{}' not found in sequence", character);
-        }
-    }
-
-    output_image.save("output.png").expect("Failed to save output image");
-}
