@@ -33,18 +33,19 @@ fn generate_image_from_config(args: &[String]) {
         config.top_margin,
         config.bottom_margin,
         config.left_margin,
-        config.right_margin
+        config.right_margin,
+        config.threshold
     );
 }
 
 fn generate_image_from_args(args: &[String]) {
     if !validate_args(&args) {
-        eprintln!("Usage: bitmap_font_tool <path_to_font_image> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE]  [--save-json]");
+        eprintln!("Usage: bitmap_font_tool <path_to_font_image> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]");
         return;
     }
 
     let (font_path, sequence, text, chars_per_row) = parse_mandatory_args(&args);
-    let (top_margin, bottom_margin, left_margin, right_margin) = parse_optional_args(&args);
+    let (top_margin, bottom_margin, left_margin, right_margin, threshold) = parse_optional_args(&args);
 
     if args.contains(&"--save-json".to_string()) {
         let config = FontConfig {
@@ -54,7 +55,8 @@ fn generate_image_from_args(args: &[String]) {
             top_margin,
             bottom_margin,
             left_margin,
-            right_margin
+            right_margin,
+            threshold
         };
         save_font_config(font_path, &config);
     }
@@ -67,7 +69,8 @@ fn generate_image_from_args(args: &[String]) {
         top_margin,
         bottom_margin,
         left_margin,
-        right_margin
+        right_margin,
+        threshold
     );
 }
 
@@ -90,11 +93,12 @@ fn parse_mandatory_args(args: &[String]) -> (&String, &String, &String, u32) {
     (&args[1], &args[2], &args[3], args[4].parse().expect("Failed to parse chars_per_row"))
 }
 
-fn parse_optional_args(args: &[String]) -> (u32, u32, u32, u32) {
+fn parse_optional_args(args: &[String]) -> (u32, u32, u32, u32, u8) {
     let mut top_margin = 0;
     let mut bottom_margin = 0;
     let mut left_margin = 0;
     let mut right_margin = 0;
+    let mut threshold = 0;
 
     for i in 5..args.len() {
         match args[i].as_str() {
@@ -102,10 +106,11 @@ fn parse_optional_args(args: &[String]) -> (u32, u32, u32, u32) {
             "--bottom" => bottom_margin = args[i+1].parse().expect("Failed to parse bottom margin"),
             "--left" => left_margin = args[i+1].parse().expect("Failed to parse left margin"),
             "--right" => right_margin = args[i+1].parse().expect("Failed to parse right margin"),
+            "--threshold" => threshold = args[i+1].parse().expect("Failed to parse threshold"),
             _ => {}
         }
     }
 
-    (top_margin, bottom_margin, left_margin, right_margin)
+    (top_margin, bottom_margin, left_margin, right_margin, threshold)
 }
 

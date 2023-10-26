@@ -11,7 +11,8 @@ pub struct FontConfig {
     pub top_margin: u32,
     pub bottom_margin: u32,
     pub left_margin: u32,
-    pub right_margin: u32
+    pub right_margin: u32,
+    pub threshold: u8
 }
 
 pub fn load_font_config(font_path: &str) -> FontConfig {
