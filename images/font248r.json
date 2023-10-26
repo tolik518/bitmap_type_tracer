@@ -1,0 +1,9 @@
+{
+  "font_name": "font248r.png",
+  "sequence": "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !?.",
+  "chars_per_row": 20,
+  "top_margin": 0,
+  "bottom_margin": 0,
+  "left_margin": 0,
+  "right_margin": 0
+}
