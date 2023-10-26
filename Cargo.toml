@@ -1,7 +1,17 @@
 [package]
 name = "bitmap_type_tracer"
+authors = ["tolik518"]
 version = "1.0.0"
 edition = "2021"
+rust-version = "1.65"
+description = "bitmap_type_trace is a utility tool to generate images from font bitmaps with customizable configurations"
+readme = "README_text_only.md"
+repository="https://github.com/tolik518/bitmap_type_tracer"
+license = "MIT OR Apache-2.0 OR Copyleft"
+keywords = ["bitmap", "font", "demoscene", "typography", "bitmap-font"]
+categories = ["parser-implementations", "multimedia::images", "command-line-utilities"]
+exclude = ["examples"]
+publish = true
 
 [profile.release]
 panic = "abort"
