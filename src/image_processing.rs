@@ -32,7 +32,7 @@ pub fn generate_image(
                 top_margin, idx
             );
         } else if None == pos {
-            eprintln!("Character '{}' not found in sequence", character);
+            eprintln!("Character '{}' not found in sequence. Trying to use the background-color instead.", character);
             fill_with_bg_color(&mut output_image, idx as u32 * char_width, 0, char_width, char_height);
         }
     }

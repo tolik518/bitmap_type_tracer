@@ -90,7 +90,14 @@ fn validate_args(args: &[String]) -> bool {
 }
 
 fn parse_mandatory_args(args: &[String]) -> (&String, &String, &String, u32) {
-    (&args[1], &args[2], &args[3], args[4].parse().expect("Failed to parse chars_per_row"))
+    let chars_per_row = match args[4].parse() {
+        Ok(val) => val,
+        Err(_) => {
+            eprintln!("You need to provide a valid number of characters per row.");
+            std::process::exit(1);
+        }
+    };
+    (&args[1], &args[2], &args[3], chars_per_row)
 }
 
 fn parse_optional_args(args: &[String]) -> (u32, u32, u32, u32, u8) {
@@ -102,15 +109,24 @@ fn parse_optional_args(args: &[String]) -> (u32, u32, u32, u32, u8) {
 
     for i in 5..args.len() {
         match args[i].as_str() {
-            "--top" => top_margin = args[i+1].parse().expect("Failed to parse top margin"),
-            "--bottom" => bottom_margin = args[i+1].parse().expect("Failed to parse bottom margin"),
-            "--left" => left_margin = args[i+1].parse().expect("Failed to parse left margin"),
-            "--right" => right_margin = args[i+1].parse().expect("Failed to parse right margin"),
-            "--threshold" => threshold = args[i+1].parse().expect("Failed to parse threshold"),
+            "--top" => top_margin = parse_argument(&args[i+1],"Failed to read the top margin argument. Please provide a valid value." ),
+            "--bottom" => bottom_margin = parse_argument(&args[i+1],"Failed to read the top margin argument. Please provide a valid value."),
+            "--left" => left_margin = parse_argument(&args[i+1],"Failed to read the left margin argument. Please provide a valid value." ),
+            "--right" => right_margin = parse_argument(&args[i+1],"Failed to read the right margin argument. Please provide a valid value." ),
+            "--threshold" => threshold = parse_argument(&args[i+1],"Failed to read the threshold argument. Please provide a valid value." ),
             _ => {}
         }
     }
 
-    (top_margin, bottom_margin, left_margin, right_margin, threshold)
+    (top_margin, bottom_margin, left_margin, right_margin, threshold as u8)
 }
 
+fn parse_argument(value: &str, error_message: &str) -> u32 {
+    match value.parse::<u32>() {
+        Ok(val) => val,
+        Err(_) => {
+            eprintln!("{}", error_message); // print the error to the stderr
+            std::process::exit(1); // exit the process with a non-zero exit code
+        }
+    }
+}

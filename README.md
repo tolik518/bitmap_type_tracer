@@ -35,7 +35,6 @@ bitmap_type_tracer <path_to_font_image> <text>
 
 example:
 ```bash
-```bash
 bitmap_type_tracer "examples/4138906397_0dc616813b_o.png" "Bitmap Type Trace"
 ```
 
