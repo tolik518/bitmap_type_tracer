@@ -76,32 +76,32 @@ This command will generate an image using a previously saved font configuration 
 
 ## Examples
 
-_/examples/4138906397_0dc616813b_o.png_
-![](./examples/4138906397_0dc616813b_o.png)
+_/examples/4138906397_0dc616813b_o.png_  
+![](./examples/4138906397_0dc616813b_o.png)  
 ```bash
 bitmap_font_tool examples/4138906397_0dc616813b_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
 ```
-![](./examples/4138906397_0dc616813b_o.png_tolik518.png)
-
-_/examples/4138906425_29cbc92641_o.png_
-![](./examples/4138906425_29cbc92641_o.png)
+![](./examples/4138906397_0dc616813b_o.png_tolik518.png)  
+  
+_/examples/4138906425_29cbc92641_o.png_  
+![](./examples/4138906425_29cbc92641_o.png)  
 ```bash
 bitmap_font_tool examples/4138906425_29cbc92641_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
 ```
-![](./examples/4138906425_29cbc92641_o.png_tolik518.png)
-
-_/examples/FONT34.png_  
-![](./examples/FONT34.png)
+![](./examples/4138906425_29cbc92641_o.png_tolik518.png)  
+  
+_/examples/FONT34.png_    
+![](./examples/FONT34.png)  
 ```bash
 bitmap_font_tool examples/FONT34.png " \!      ()  , . 0123456789:; - ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 20 --bottom 150 --threshold 20
 ```
-![](./examples/FONT34.png_tolik518.png)
-
-_/examples/font228.png_  
-![](./examples/font228.png)
+![](./examples/FONT34.png_tolik518.png)  
+  
+_/examples/font228.png_   
+![](./examples/font228.png)  
 ```bash
 bitmap_font_tool examples/font228.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ>.: " tolik518 10 --threshold 0
-```
+```  
 Since the number are missing from the sequence, they are not generated in the image and it tries to fill the space with the background.   
 The background was not recognized properly, so it was filled with the brown instead of black.  
 ![](./examples/font228.png_tolik518.png)  
