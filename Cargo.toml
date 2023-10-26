@@ -10,7 +10,7 @@ repository="https://github.com/tolik518/bitmap_type_tracer"
 license = "MIT OR Apache-2.0 OR Copyleft"
 keywords = ["bitmap", "font", "demoscene", "typography", "bitmap-font"]
 categories = ["parser-implementations", "multimedia::images", "command-line-utilities"]
-exclude = ["examples"]
+exclude = ["examples", "README.md", "logo.png", "output.png", ".gitignore"]
 publish = true
 
 [profile.release]
