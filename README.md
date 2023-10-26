@@ -1,63 +1,79 @@
-Certainly! Below is a suggested `README.md` for your `bitmap_font_tool`:
+# [bitmap_type_tracer](logo.png)
 
----
 
-# Bitmap Type Trace
-
-`bitmap_font_tool` is a Rust-based utility designed for generating images from bitmap fonts and sequences. It allows users to specify custom configurations for margins and optionally save these configurations in JSON format.
+`bitmap_type_tracer` is a utility tool for generating images using a provided font bitmap and a set of configuration parameters.  
 
 ## Features:
-- Generate images from bitmap font files and custom sequences.
-- Specify custom margins for top, bottom, left, and right.
-- Load configurations from JSON.
-- Save current configurations to a JSON file.
+- Generate images from a font bitmap using a custom sequence and text.
+- Load and save font configurations for reuse.
+- Customize margins and threshold for more precise image generation.
 
-## Dependencies:
-- image: `0.23.14`
-- serde: `1.0`
-- serde_json: `1.0`
-- serde_derive: `1.0`
+## Getting Started:
+Ensure you have the `image` and `serde_derive` crates as dependencies in your project.
 
-## Usage:
+### Font Source:
+The fonts used in this project are sourced from [ianhan/BitmapFonts](https://github.com/ianhan/BitmapFonts/tree/main) repository.
 
-Basic usage (with pre-saved font config in JSON format):
-```
-bitmap_font_tool <path_to_font_image> <text>
-```
+### How to Run:
 
-Advanced usage (with custom arguments):
-```
-bitmap_font_tool <path_to_font_image> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE]
+#### Specifying Arguments Directly:
+
+```bash
+bitmap_type_tracer <path_to_font_image> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]
 ```
 
-To save the current configuration to a JSON file:
-```
-bitmap_font_tool <path_to_font_image> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] --save-json
-```
-
-## Parameters:
-
-- `path_to_font_image`: Path to the bitmap font image.
-- `sequence`: A string sequence indicating the order of characters in the font image.
-- `text`: The text string you want to generate as an image.
-- `chars_per_row`: Number of characters per row in the font image.
-- `--top VALUE`: Optional top margin.
-- `--bottom VALUE`: Optional bottom margin.
-- `--left VALUE`: Optional left margin.
-- `--right VALUE`: Optional right margin.
-- `--save-json`: Optional flag to save the current configuration to a JSON file.
-
-## Example:
-
-Given a font image named `font.png` with the sequence `ABCDEFGHIJKLMNOPQRSTUVWXYZ`, to generate an image for the text `HELLO`:
-
-```
-bitmap_font_tool font.png ABCDEFGHIJKLMNOPQRSTUVWXYZ HELLO 5 --top 2 --bottom 2 --left 1 --right 1
+example:
+```bash
+bitmap_type_tracer "images/4138906397_0dc616813b_o.png" " !\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " "Bitmap Type Tracer" 10 --threshold 1 --save-json
 ```
 
-## License:
-[Specify your license here, if applicable]
+#### Using Font Configuration:
+For this method, you will need to have a font configuration file saved. You can do this by running the command with the `--save-json` flag when you specified all the arguments.
+```bash
+bitmap_type_tracer <path_to_font_image> <text>
+```
 
----
+example:
+```bash
+```bash
+bitmap_type_tracer "images/4138906397_0dc616813b_o.png" "Bitmap Type Trace"
+```
 
-Please customize this `README.md` as needed, especially the license section if you have one in mind for your project.
+This command will generate an image using a previously saved font configuration for the provided font image and the specified text.
+
+
+**Arguments:**
+
+- `<path_to_font_image>`: Path to the font image (bitmap) you want to use.
+
+- `<sequence>`: A sequence of characters as they appear in the font bitmap.
+
+- `<text>`: The text you want to generate as an image.
+
+- `<chars_per_row>`: Number of characters in a row in the font bitmap.
+
+**Optional Flags:**
+
+- `--top VALUE`: Specify top margin. Default is 0.
+
+- `--bottom VALUE`: Specify bottom margin. Default is 0.
+
+- `--left VALUE`: Specify left margin. Default is 0.
+
+- `--right VALUE`: Specify right margin. Default is 0.
+
+- `--threshold VALUE`: Specify the threshold for color comparisons. Default is 0.
+
+- `--save-json`: Save the provided configuration as a JSON file, making it easier to reuse in the future.
+
+## Modules:
+
+- `main.rs`: The main driver of the application, handling command line arguments and invoking image generation.
+
+- `font_config.rs`: Handles the loading and saving of font configurations.
+
+- `image_processing.rs`: Contains the core image processing functions. (This module was mentioned but its content was not provided in the given code.)
+
+## Contributions:
+
+Feel free to contribute by opening issues or pull requests. All feedback is welcome!

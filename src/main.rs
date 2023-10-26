@@ -40,7 +40,7 @@ fn generate_image_from_config(args: &[String]) {
 
 fn generate_image_from_args(args: &[String]) {
     if !validate_args(&args) {
-        eprintln!("Usage: bitmap_font_tool <path_to_font_image> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]");
+        eprintln!("Usage: bitmap_type_tracer <path_to_font_image> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]");
         return;
     }
 
