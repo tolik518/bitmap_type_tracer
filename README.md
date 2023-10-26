@@ -17,7 +17,7 @@ The fonts used in this project are sourced from [ianhan/BitmapFonts](https://git
 
 ### Installation
 Make sure you have [Rust](https://www.rust-lang.org/tools/install) installed on your system.  
-Then, run the following command to install the tool:
+Then, run the following command to install the tool from [crates.io](https://crates.io/crates/bitmap_type_tracer):
 ```bash 
 cargo install bitmap_type_tracer --locked
 ```
