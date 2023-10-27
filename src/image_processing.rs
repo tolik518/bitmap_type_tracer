@@ -1,4 +1,5 @@
 use image::{ImageBuffer, GenericImageView, Rgba};
+use crate::TRANSLATION;
 
 pub fn generate_image(
     font_path: &str,
@@ -32,7 +33,7 @@ pub fn generate_image(
                 top_margin, idx
             );
         } else if None == pos {
-            eprintln!("Character '{}' not found in sequence. Trying to use the background-color instead.", character);
+            eprintln!("{}", TRANSLATION.character_not_found(character));
             fill_with_bg_color(&mut output_image, idx as u32 * char_width, 0, char_width, char_height);
         }
     }
@@ -40,11 +41,11 @@ pub fn generate_image(
         remove_background(&mut output_image, threshold);
     }
 
-    output_image.save("output.png").expect("Failed to save output image");
+    output_image.save("output.png").expect(TRANSLATION.err_failed_to_save_output_image())
 }
 
 fn load_font_image(font_path: &str) -> image::DynamicImage {
-    image::open(font_path).expect("Failed to open font image")
+    image::open(font_path).expect(TRANSLATION.err_failed_to_open_font_image())
 }
 
 fn calculate_character_dimensions(
