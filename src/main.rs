@@ -1,6 +1,3 @@
-extern crate image;
-extern crate serde_derive;
-
 use std::env;
 mod font_config;
 mod image_processing;
