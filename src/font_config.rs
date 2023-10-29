@@ -7,7 +7,6 @@ use std::fs::write;
 
 #[derive(Serialize, Deserialize)]
 pub struct FontConfig {
-    pub font_name: String,
     pub sequence: String,
     pub chars_per_row: u32,
     pub top_margin: u32,
@@ -31,5 +30,5 @@ pub fn save_font_config(font_path: &str, config: &FontConfig) {
 
     let json_content = serde_json::to_string_pretty(&config).expect(TRANSLATION.err_failed_to_serialize_config());
 
-    write(&config_name, json_content).expect(TRANSLATION.err_failed_to_save_config())
+    write(config_name, json_content).expect(TRANSLATION.err_failed_to_save_config())
 }

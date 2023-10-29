@@ -46,50 +46,38 @@ fn generate_image_from_config(args: &[String]) {
 
     generate_image(
         font_path,
-        &config.sequence,
         text,
-        config.chars_per_row,
-        config.top_margin,
-        config.bottom_margin,
-        config.left_margin,
-        config.right_margin,
-        config.threshold
+        &config
     );
 }
 
 fn generate_image_from_args(args: &[String]) {
-    if !validate_args(&args) {
+    if !validate_args(args) {
         eprintln!("{}", TRANSLATION.full_help());
         return;
     }
 
-    let (font_path, sequence, text, chars_per_row) = parse_mandatory_args(&args);
-    let (top_margin, bottom_margin, left_margin, right_margin, threshold) = parse_optional_args(&args);
+    let (font_path, sequence, text, chars_per_row) = parse_mandatory_args(args);
+    let (top_margin, bottom_margin, left_margin, right_margin, threshold) = parse_optional_args(args);
 
-    if args.contains(&"--save-json".to_string()) {
-        let config = FontConfig {
-            font_name: font_path.to_string(),
-            sequence: sequence.to_string(),
-            chars_per_row,
-            top_margin,
-            bottom_margin,
-            left_margin,
-            right_margin,
-            threshold
-        };
-        save_font_config(font_path, &config);
-    }
-
-    generate_image(
-        font_path,
-        sequence,
-        text,
+    let config = FontConfig {
+        sequence: sequence.to_string(),
         chars_per_row,
         top_margin,
         bottom_margin,
         left_margin,
         right_margin,
         threshold
+    };
+
+    if args.contains(&"--save-json".to_string()) {
+        save_font_config(font_path, &config);
+    }
+
+    generate_image(
+        font_path,
+        text,
+        &config
     );
 }
 
@@ -99,11 +87,14 @@ fn validate_args(args: &[String]) -> bool {
         return false;
     }
 
-    // Check if --save-json flag is present
     let save_json_flag = args.contains(&"--save-json".to_string());
 
     // Calculate the number of expected arguments excluding the flag
-    let expected_args = if save_json_flag { args.len() - 1 } else { args.len() };
+    let expected_args = if save_json_flag {
+        args.len() - 1
+    } else {
+        args.len()
+    };
 
     expected_args <= 5 || (expected_args - 5) % 2 == 0
 }
