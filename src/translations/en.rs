@@ -3,26 +3,25 @@ pub struct English;
 impl super::Translation for English {
     fn help(&self) -> &'static str {
         "Usage: \n \
-                            If your font already has a configuration file: \n \
-                            bitmap_type_tracer <path_to_bitmap_font> <text>\n\n \
-                            If you want to generate a configuration file: \n \
-                            bitmap_type_tracer <path_to_bitmap_font> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]\n   \
-                            path_to_bitmap_font     literally the path to the bitmap.png containing the characters\n   \
-                            sequence                the sequence of characters that you see in the bitmap font e.x 'ABCDEF...'\n   \
-                            text                    the text you want to write with the provided bitmap font\n   \
-                            chars_per_row           how many characters are in a row in the provided bitmap font\n \
-                            Margins: \n   \
-                            --top VALUE             the number of pixels to crop from the top of the image\n   \
-                            --bottom VALUE          the number of pixels to crop from the bottom of the image\n   \
-                            --left VALUE            the number of pixels to crop from the left of the image\n   \
-                            --right VALUE           the number of pixels to crop from the right of the image\n \
-                            Other options: \n   \
-                            --threshold VALUE       the value to determine the threshold for making the background transparent (0-255)\n   \
-                            --save-json             save the configuration to a json file\n   \
-                            --help                  print this help message\n   \
-                            --version               print the version of the program\n\n \
-                            For example usage check out the README.md in the repository \n   \
-                            "
+        If your font already has a configuration file: \n \
+        bitmap_type_tracer <path_to_bitmap_font> <text>\n\n \
+        If you want to generate a configuration file: \n \
+        bitmap_type_tracer <path_to_bitmap_font> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]\n   \
+        path_to_bitmap_font     literally the path to the bitmap.png containing the characters\n   \
+        sequence                the sequence of characters that you see in the bitmap font e.x 'ABCDEF...'\n   \
+        text                    the text you want to write with the provided bitmap font\n   \
+        chars_per_row           how many characters are in a row in the provided bitmap font\n \
+        Margins: \n   \
+        --top VALUE             the number of pixels to crop from the top of the image\n   \
+        --bottom VALUE          the number of pixels to crop from the bottom of the image\n   \
+        --left VALUE            the number of pixels to crop from the left of the image\n   \
+        --right VALUE           the number of pixels to crop from the right of the image\n \
+        Other options: \n   \
+        --threshold VALUE       the value to determine the threshold for making the background transparent (0-255)\n   \
+        --save-json             save the configuration to a json file\n   \
+        --help                  print this help message\n   \
+        --version               print the version of the program\n\n \
+        For example usage check out the README.md in the repository \n"
     }
     fn version(&self) -> &'static str {env!("CARGO_PKG_VERSION")}
     fn repository(&self) -> &'static str {env!("CARGO_PKG_REPOSITORY")}
