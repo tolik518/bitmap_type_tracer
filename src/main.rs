@@ -1,3 +1,5 @@
+#![allow(clippy::expect_fun_call)]
+
 use std::env;
 mod font_config;
 mod image_processing;

@@ -1,3 +1,5 @@
+#![allow(clippy::expect_fun_call)]
+
 use image::{ImageBuffer, GenericImageView, Rgba};
 use crate::font_config::FontConfig;
 use crate::TRANSLATION;
@@ -25,9 +27,10 @@ pub fn generate_image(
                 char_height,
                 config.chars_per_row,
                 config.left_margin,
-                config.top_margin, idx
+                config.top_margin,
+                idx
             );
-        } else if None == pos {
+        } else if pos.is_none() {
             eprintln!("{}", TRANSLATION.character_not_found(character));
             fill_with_bg_color(&mut output_image, idx as u32 * char_width, 0, char_width, char_height);
         }

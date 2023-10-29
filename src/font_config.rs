@@ -1,3 +1,4 @@
+#![allow(clippy::expect_fun_call)]
 use crate::{TRANSLATION};
 
 use serde_derive::{Serialize, Deserialize};
