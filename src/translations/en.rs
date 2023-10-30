@@ -1,5 +1,9 @@
 pub struct English;
 
+/*
+ * Author: Anatolij "tolik518" Vasilev
+ * Created: 2023-10-26
+ */
 impl super::Translation for English
 {
     fn help_usage(&self) -> &'static str {

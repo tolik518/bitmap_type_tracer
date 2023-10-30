@@ -1,5 +1,9 @@
 pub struct Italian;
 
+/*
+ * Author: Mattia "Tizzz-555" Beccari
+ * Created: 2023-10-29
+ */
 impl super::Translation for Italian
 {
     fn help_usage(&self) -> &'static str {

@@ -1,5 +1,9 @@
 pub struct Turkish;
 
+/*
+ * Author: ARDA KÖLEMENOĞLU
+ * Created: 2023-10-28
+ */
 impl super::Translation for Turkish
 {
     fn help_usage(&self) -> &'static str {
