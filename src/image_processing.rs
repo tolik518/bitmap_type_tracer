@@ -31,7 +31,7 @@ pub fn generate_image(
                 idx
             );
         } else if pos.is_none() {
-            eprintln!("{}", TRANSLATION.character_not_found(character));
+            eprintln!("{}", TRANSLATION.warn_character_not_found(character));
             fill_with_bg_color(&mut output_image, idx as u32 * char_width, 0, char_width, char_height);
         }
     }

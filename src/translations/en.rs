@@ -1,28 +1,48 @@
 pub struct English;
 
-impl super::Translation for English {
-    fn help(&self) -> &'static str {
-        "Usage: \n \
-        If your font already has a configuration file: \n \
-        bitmap_type_tracer <path_to_bitmap_font> <text>\n\n \
-        If you want to generate a configuration file: \n \
-        bitmap_type_tracer <path_to_bitmap_font> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]\n   \
-        path_to_bitmap_font     literally the path to the bitmap.png containing the characters\n   \
-        sequence                the sequence of characters that you see in the bitmap font e.x 'ABCDEF...'\n   \
-        text                    the text you want to write with the provided bitmap font\n   \
-        chars_per_row           how many characters are in a row in the provided bitmap font\n \
-        Margins: \n   \
-        --top VALUE             the number of pixels to crop from the top of the image\n   \
-        --bottom VALUE          the number of pixels to crop from the bottom of the image\n   \
-        --left VALUE            the number of pixels to crop from the left of the image\n   \
-        --right VALUE           the number of pixels to crop from the right of the image\n \
-        Other options: \n   \
-        --threshold VALUE       the value to determine the threshold for making the background transparent (0-255)\n   \
-        --save-json             save the configuration to a json file\n   \
-        --help                  print this help message\n   \
-        --version               print the version of the program\n\n \
-        For example usage check out the README.md in the repository \n"
+impl super::Translation for English
+{
+    fn help_usage(&self) -> &'static str {
+        "Usage:\n\
+        \u{20} If your font already has a configuration file: \n\
+        \u{20} bitmap_type_tracer <path_to_bitmap_font> <text>\n\n\
+        \u{20} If you want to generate a configuration file: \n\
+        \u{20} bitmap_type_tracer <path_to_bitmap_font> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]"
     }
+
+    fn help_parameters(&self) -> &'static str {
+        "\n\
+        \u{20}\u{20} path_to_bitmap_font     literally the path to the bitmap.png containing the characters\n\
+        \u{20}\u{20} sequence                the sequence of characters that you see in the bitmap font e.x 'ABCDEF...'\n\
+        \u{20}\u{20} text                    the text you want to write with the provided bitmap font\n\
+        \u{20}\u{20} chars_per_row           how many characters are in a row in the provided bitmap font\n"
+    }
+
+    fn help_margins(&self) -> &'static str {
+        "Margins:\n\
+        \u{20}\u{20} --top VALUE             the number of pixels to crop from the top of the image\n\
+        \u{20}\u{20} --bottom VALUE          the number of pixels to crop from the bottom of the image\n\
+        \u{20}\u{20} --left VALUE            the number of pixels to crop from the left of the image\n\
+        \u{20}\u{20} --right VALUE           the number of pixels to crop from the right of the image"
+    }
+
+    fn help_other_options(&self) -> &'static str {
+        "Other options:\n\
+        \u{20}\u{20} --threshold VALUE       the value to determine the threshold for making the background transparent (0-255)\n\
+        \u{20}\u{20} --save-json             save the configuration to a json file\n\
+        \u{20}\u{20} --help                  print this help message\n\
+        \u{20}\u{20} --version               print the version of the program"
+    }
+
+    fn help_example_usage(&self) -> &'static str {"For examples usage check out the README.md in the repository"}
+
+    fn help(&self) -> String {
+        format!(
+            "{}\n\n{}\n\n{}\n\n{}\n",
+            self.help_usage(), self.help_margins(), self.help_other_options(), self.help_example_usage()
+        )
+    }
+
     fn version(&self) -> &'static str {env!("CARGO_PKG_VERSION")}
     fn repository(&self) -> &'static str {env!("CARGO_PKG_REPOSITORY")}
     fn name(&self) -> &'static str {env!("CARGO_PKG_NAME")}
@@ -33,7 +53,7 @@ impl super::Translation for English {
             self.name(), self.author(), self.version(), self.repository(), self.help()
         )
     }
-    fn character_not_found(&self, character: char) -> String {
+    fn warn_character_not_found(&self, character: char) -> String {
         format!("Character '{}' not found in sequence. Trying to use the background-color instead.", character)
     }
 

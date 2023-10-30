@@ -1,32 +1,39 @@
-use crate::translations::en::English;
-use crate::translations::tr::Turkish;
-use crate::translations::it::Italian;
+use crate::translations::{
+    tr::Turkish,
+    en::English,
+    it::Italian
+};
 
 mod en;
 mod tr;
 mod it;
 
 pub fn get_translation_for_locale(locale: &str) -> Box<dyn Translation> {
-    eprintln!("{}", locale);
-
     match locale {
         "tr" => Box::new(Turkish),
         "it" => Box::new(Italian),
-        // ... other locales
         "en" => Box::new(English),
-        _ => Box::new(Turkish),
+        _ => Box::new(English),
     }
 }
 
 pub trait Translation : Send + Sync  {
-    fn help(&self) -> &'static str;
+    fn help_example_usage(&self) -> &'static str;
+    fn help_other_options(&self) -> &'static str;
+    fn help_parameters(&self) -> &'static str;
+    fn help_margins(&self) -> &'static str;
+    fn help_usage(&self) -> &'static str;
+
+    fn help(&self) -> String;
+
     fn version(&self) -> &'static str;
     fn repository(&self) -> &'static str;
     fn name(&self) -> &'static str;
     fn author(&self) -> &'static str;
-    fn full_help(&self) -> String;
-    fn character_not_found(&self, character: char) -> String;
 
+    fn full_help(&self) -> String;
+
+    fn warn_character_not_found(&self, character: char) -> String;
     fn err_invalid_num_of_chars(&self) -> &'static str;
     fn err_invalid_threshold(&self) -> &'static str;
     fn err_invalid_left_margin(&self) -> &'static str;

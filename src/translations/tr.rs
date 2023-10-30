@@ -1,28 +1,48 @@
 pub struct Turkish;
 
-impl super::Translation for Turkish {
-    fn help(&self) -> &'static str {
-        "Usage: \n \
-       Yazı tipinizde zaten bir yapılandırma dosyası varsa:\n \
-        bitmap_type_tracer <path_to_bitmap_font> <text>\n\n \
-       Bir yapılandırma dosyası oluşturmak istiyorsanız: \n \
-        bitmap_type_tracer <path_to_bitmap_font> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]\n   \
-        path_to_bitmap_font     karakterleri içeren bitmap.png dosyasının yolu\n   \
-        sequence                bit eşlem yazı tipinde gördüğünüz karakter dizisi, örneğin 'ABCÇDEF...'\n   \
-        text                    bitmap yazı tipiyle yazmak istediğiniz metin\n   \
-        chars_per_row           bitmap yazı tipinde bir satırda kaç karakter olduğunu\n \
-        Margins: \n   \
-        --top VALUE             görüntünün üst kısmından kırpılacak piksel sayısı\n   \
-        --bottom VALUE          görüntünün alt kısmından kırpılacak piksel sayısı\n   \
-        --left VALUE            görüntünün solundan kırpılacak piksel sayısı\n   \
-        --right VALUE           görüntünün sağından kırpılacak piksel sayısı\n \
-        Other options: \n   \
-        --threshold VALUE       arka planı saydam hale getirmeye yönelik eşiği belirleyen değer (0-255)\n   \
-        --save-json             yapılandırmayı json dosyasına kaydedin\n   \
-        --help                  yardım mesajını yazdır\n   \
-        --version               programın sürümünü yazdır\n\n \
-      Nasıl kullanıldığını öğrenmek için README.md dosyasını okuyun. \n"
+impl super::Translation for Turkish
+{
+    fn help_usage(&self) -> &'static str {
+        "Usage:\n\
+        \u{20} Yazı tipinizde zaten bir yapılandırma dosyası varsa: \n\
+        \u{20} bitmap_type_tracer <path_to_bitmap_font> <text>\n\n\
+        \u{20} Bir yapılandırma dosyası oluşturmak istiyorsanız:\n\
+        \u{20} bitmap_type_tracer <path_to_bitmap_font> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]"
     }
+
+    fn help_parameters(&self) -> &'static str {
+        "\n\
+        \u{20}\u{20} path_to_bitmap_font     karakterleri içeren bitmap.png dosyasının yolu\n\
+        \u{20}\u{20} sequence                bit eşlem yazı tipinde gördüğünüz karakter dizisi, örneğin 'ABCÇDEF...'\n\
+        \u{20}\u{20} text                    bitmap yazı tipiyle yazmak istediğiniz metin\n\
+        \u{20}\u{20} chars_per_row           bitmap yazı tipinde bir satırda kaç karakter olduğunu\n"
+    }
+
+    fn help_margins(&self) -> &'static str {
+        "Margins:\n\
+        \u{20}\u{20} --top VALUE             örüntünün üst kısmından kırpılacak piksel sayısı\n\
+        \u{20}\u{20} --bottom VALUE          örüntünün alt kısmından kırpılacak piksel sayısı\n\
+        \u{20}\u{20} --left VALUE            görüntünün solundan kırpılacak piksel sayısı\n\
+        \u{20}\u{20} --right VALUE           görüntünün sağından kırpılacak piksel sayısı"
+    }
+
+    fn help_other_options(&self) -> &'static str {
+        "Other options:\n\
+        \u{20}\u{20} --threshold VALUE       arka planı saydam hale getirmeye yönelik eşiği belirleyen değer (0-255)\n\
+        \u{20}\u{20} --save-json             yapılandırmayı json dosyasına kaydedin\n\
+        \u{20}\u{20} --help                  yardım mesajını yazdır\n\
+        \u{20}\u{20} --version               programın sürümünü yazdır"
+    }
+
+    fn help_example_usage(&self) -> &'static str {"Nasıl kullanıldığını öğrenmek için README.md dosyasını okuyun"}
+
+    fn help(&self) -> String {
+        format!(
+            "{}\n\n{}\n\n{}\n\n{}\n",
+            self.help_usage(), self.help_margins(), self.help_other_options(), self.help_example_usage()
+        )
+    }
+
     fn version(&self) -> &'static str {env!("CARGO_PKG_VERSION")}
     fn repository(&self) -> &'static str {env!("CARGO_PKG_REPOSITORY")}
     fn name(&self) -> &'static str {env!("CARGO_PKG_NAME")}
@@ -33,7 +53,7 @@ impl super::Translation for Turkish {
             self.name(), self.author(), self.version(), self.repository(), self.help()
         )
     }
-    fn character_not_found(&self, character: char) -> String {
+    fn warn_character_not_found(&self, character: char) -> String {
         format!("Karakter '{}' bulunamadı. Onun yerine arka plan rengini kullanıyoruz.", character)
     }
 

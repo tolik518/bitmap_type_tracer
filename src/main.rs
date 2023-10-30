@@ -14,7 +14,7 @@ use crate::translations::Translation;
 use std::sync::Arc;
 
 static TRANSLATION: Lazy<Arc<dyn Translation>> = Lazy::new(|| {
-    let locale = Locale::user_default().to_string();
+    let locale = Locale::user_default().to_string().split('-').next().unwrap().to_owned();
     let boxed_translation = translations::get_translation_for_locale(&locale);
     Arc::from(boxed_translation)
 });
