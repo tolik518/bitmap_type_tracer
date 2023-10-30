@@ -64,7 +64,7 @@ impl super::Translation for French
     fn err_invalid_num_of_chars(&self) -> &'static str {"Vous devez fournir un nombre valide de caractères par ligne."}
     fn err_invalid_threshold(&self) -> &'static str {"Vous devez fournir une valeur seuil valide (0-255)."}
     fn err_invalid_left_margin(&self) -> &'static str {"Échec de la lecture de l'argument de la marge gauche. Veuillez fournir une valeur valide."}
-    fn err_invalid_right_margin(&self) -> &'static str {"Échec de la lecture de l'argument de marge correct. Veuillez fournir une valeur valide."}
+    fn err_invalid_right_margin(&self) -> &'static str {"Échec de la lecture de l'argument de la marge droite. Veuillez fournir une valeur valide."}
     fn err_invalid_top_margin(&self) -> &'static str {"Échec de la lecture de l'argument de la marge supérieure. Veuillez fournir une valeur valide."}
     fn err_invalid_bottom_margin(&self) -> &'static str {"Échec de la lecture de l'argument de la marge inférieure. Veuillez fournir une valeur valide."}
 
