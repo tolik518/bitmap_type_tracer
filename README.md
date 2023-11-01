@@ -1,8 +1,14 @@
+<p align="center">  
+
 # ![bitmap_type_tracer](./logo.png)
 ![Crates.io](https://img.shields.io/crates/v/bitmap_type_tracer)
 ![Crates.io](https://img.shields.io/crates/d/bitmap_type_tracer)
+![GitHub issues](https://img.shields.io/github/issues/tolik518/bitmap_type_tracer)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/tolik518/bitmap_type_tracer)
 
-`bitmap_type_tracer` is a utility tool for generating text-images using a provided bitmap-font (and a set of configuration parameters).  
+`bitmap_type_tracer` is a utility tool, written in Rust, for generating text-images using a provided bitmap-font (and a set of configuration parameters).
+
+</p>
 
 ## Features
 - Generate images from a font bitmap using a custom sequence and text.
@@ -175,3 +181,9 @@ bitmap_type_tracer examples/MEGAD2.png "AGMSY+:4BHNTZ\!;5CIOU.?06DJPV;(17EKQW\")
 ## Contributions
 
 Feel free to contribute by opening issues or pull requests. All feedback is welcome!
+
+<p align="center">  
+
+![Rust love](https://www.gstatic.com/android/keyboard/emojikitchen/20220506/u1f498/u1f498_u1f980.png)
+
+</p>
