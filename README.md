@@ -1,8 +1,14 @@
+<div align="center">  
+
 # ![bitmap_type_tracer](./logo.png)
 ![Crates.io](https://img.shields.io/crates/v/bitmap_type_tracer)
 ![Crates.io](https://img.shields.io/crates/d/bitmap_type_tracer)
+![GitHub issues](https://img.shields.io/github/issues/tolik518/bitmap_type_tracer)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/tolik518/bitmap_type_tracer)
 
-`bitmap_type_tracer` is a utility tool for generating text-images using a provided bitmap-font (and a set of configuration parameters).  
+`bitmap_type_tracer` is a utility tool, written in Rust, for generating text-images using a provided bitmap-font (and a set of configuration parameters).
+
+</div>
 
 ## Features
 - Generate images from a font bitmap using a custom sequence and text.
@@ -74,6 +80,8 @@ This command will generate an image using a previously saved font configuration 
 
 - `--save-json`: Save the provided configuration as a JSON file, making it easier to reuse in the future.
 
+- `--lang en|it|fr|en`: Specify the language of the text. Default is your System language if supported, otherwise its set to en.
+
 ## Modules
 
 - `main.rs`: The main driver of the application, handling command line arguments and invoking image generation.
@@ -87,89 +95,95 @@ This command will generate an image using a previously saved font configuration 
 _/examples/4138906397_0dc616813b_o.png_  
 ![](./examples/4138906397_0dc616813b_o.png)  
 ```bash
-bitmap_font_tool examples/4138906397_0dc616813b_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
+bitmap_type_tracer examples/4138906397_0dc616813b_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
 ```
-![](./examples/4138906397_0dc616813b_o.png_tolik518.png)  
+![](examples/outputs/4138906397_0dc616813b_o.png_tolik518.png)  
 
 ---------------------------------------
 
 _/examples/4138906425_29cbc92641_o.png_  
 ![](./examples/4138906425_29cbc92641_o.png)  
 ```bash
-bitmap_font_tool examples/4138906425_29cbc92641_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
+bitmap_type_tracer examples/4138906425_29cbc92641_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
 ```
-![](./examples/4138906425_29cbc92641_o.png_tolik518.png)  
+![](examples/outputs/4138906425_29cbc92641_o.png_tolik518.png)  
 
 ---------------------------------------
   
 _/examples/FONT34.png_    
 ![](./examples/FONT34.png)  
 ```bash
-bitmap_font_tool examples/FONT34.png " \!      ()  , . 0123456789:; - ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 20 --bottom 150 --threshold 20
+bitmap_type_tracer examples/FONT34.png " \!      ()  , . 0123456789:; - ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 20 --bottom 150 --threshold 20
 ```
-![](./examples/FONT34.png_tolik518.png)  
+![](examples/outputs/FONT34.png_tolik518.png)  
 
 ---------------------------------------
   
 _/examples/font228.png_   
 ![](./examples/font228.png)  
 ```bash
-bitmap_font_tool examples/font228.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ>.: " tolik518 10 --threshold 0
+bitmap_type_tracer examples/font228.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ>.: " tolik518 10 --threshold 0
 ```  
 Since the number are missing from the sequence, they are not generated in the image and it tries to fill the space with the background.   
 The background was not recognized properly, so it was filled with the brown instead of black.  
-![](./examples/font228.png_tolik518.png)  
+![](examples/outputs/font228.png_tolik518.png)  
 
 ---------------------------------------
   
 _/examples/font239r.png_  
 ![](./examples/font239r.png)  
 ```bash  
-bitmap_font_tool examples/font239r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ()\!?.,’  " tolik518 7 --bottom 4 --threshold 1
+bitmap_type_tracer examples/font239r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ()\!?.,’  " tolik518 7 --bottom 4 --threshold 1
 ```
 Since the number are missing from the sequence, they are not generated in the image and it tries to fill the space with the background, but the threshold is set to 1, so it doesn't fill the space with the transparent background since it recognized the black background.  
-![](./examples/font239r.png_tolik518.png)  
+![](examples/outputs/font239r.png_tolik518.png)  
 
 ---------------------------------------
 
 _/examples/font244r.png_   
 ![](./examples/font244r.png)   
 ```bash  
-bitmap_font_tool examples/font244r.png "ALW6BMX7CNY8DOZ9EP*\!FQ0?GR1.HS2 IT3 JU4 KV5 " tolik518 4 --threshold 30 
+bitmap_type_tracer examples/font244r.png "ALW6BMX7CNY8DOZ9EP*\!FQ0?GR1.HS2 IT3 JU4 KV5 " tolik518 4 --threshold 30 
 ```  
 We needed a threshold of 30 to remove the black background.   
-![](./examples/font244r.png_tolik518.png)  
+![](examples/outputs/font244r.png_tolik518.png)  
 
 ---------------------------------------
 
 _/examples/font248r.png_  
 ![](./examples/font248r.png)  
 ```bash
-bitmap_font_tool examples/font248r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 \!?." tolik518 20 --threshold 60
+bitmap_type_tracer examples/font248r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 \!?." tolik518 20 --threshold 60
 ```
 To have a better result, we needed a threshold of 60 to remove the black background.  
-![](./examples/font248r.png_tolik518.png)  
+![](examples/outputs/font248r.png_tolik518.png)  
 
 ---------------------------------------
 
 _/examples/MEGAD.png_  
 ![](./examples/MEGAD.png)  
 ```bash
-bitmap_font_tool examples/MEGAD.png "'() +,-. 0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ     ! =?     " tolik518 10 --bottom 10 --threshold 1
+bitmap_type_tracer examples/MEGAD.png "'() +,-. 0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ     ! =?     " tolik518 10 --bottom 10 --threshold 1
 ```  
 In this example, we needed to add a bottom margin of 10 for the characters to align properly.  
-![](./examples/MEGAD.png_tolik518.png)  
+![](examples/outputs/MEGAD.png_tolik518.png)  
 
 ---------------------------------------
 
 _/examples/MEGAD2.png_  
 ![](./examples/MEGAD2.png)  
 ```bash
-bitmap_font_tool examples/MEGAD2.png "AGMSY+:4BHNTZ\!;5CIOU.?06DJPV;(17EKQW\")28FLRX-'39" tolik518 8 --bottom 3 --threshold 1
+bitmap_type_tracer examples/MEGAD2.png "AGMSY+:4BHNTZ\!;5CIOU.?06DJPV;(17EKQW\")28FLRX-'39" tolik518 8 --bottom 3 --threshold 1
 ```  
-![](./examples/MEGAD2.png_tolik518.png)  
+![](examples/outputs/MEGAD2.png_tolik518.png)  
 
 
 ## Contributions
 
 Feel free to contribute by opening issues or pull requests. All feedback is welcome!
+
+<div align="center">  
+
+![Rust love](https://www.gstatic.com/android/keyboard/emojikitchen/20220506/u1f498/u1f498_u1f980.png)
+
+</div>

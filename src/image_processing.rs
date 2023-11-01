@@ -1,24 +1,22 @@
+#![allow(clippy::expect_fun_call)]
+
 use image::{ImageBuffer, GenericImageView, Rgba};
+use crate::font_config::FontConfig;
+use crate::TRANSLATION;
 
 pub fn generate_image(
     font_path: &str,
-    sequence: &str,
     text: &str,
-    chars_per_row: u32,
-    top_margin: u32,
-    bottom_margin: u32,
-    left_margin: u32,
-    right_margin: u32,
-    threshold: u8
+    config: &FontConfig
 ) {
     let font_image = load_font_image(font_path);
-    let (char_width, char_height) = calculate_character_dimensions(&font_image, sequence, chars_per_row, top_margin, bottom_margin, left_margin, right_margin);
+    let (char_width, char_height) = calculate_character_dimensions(&font_image, config);
 
     let output_width = char_width * text.len() as u32;
     let mut output_image = ImageBuffer::new(output_width, char_height);
 
     for (idx, character) in text.chars().enumerate() {
-        let pos = find_character_position(character, sequence);
+        let pos = find_character_position(character, &config.sequence);
 
         if let Some(position) = pos {
             copy_character_to_output(
@@ -27,37 +25,33 @@ pub fn generate_image(
                 position,
                 char_width,
                 char_height,
-                chars_per_row,
-                left_margin,
-                top_margin, idx
+                config.chars_per_row,
+                config.left_margin,
+                config.top_margin,
+                idx
             );
-        } else if None == pos {
-            eprintln!("Character '{}' not found in sequence. Trying to use the background-color instead.", character);
+        } else if pos.is_none() {
+            eprintln!("{}", TRANSLATION.warn_character_not_found(character));
             fill_with_bg_color(&mut output_image, idx as u32 * char_width, 0, char_width, char_height);
         }
     }
-    if threshold > 0 {
-        remove_background(&mut output_image, threshold);
+    if config.threshold > 0 {
+        remove_background(&mut output_image, config.threshold);
     }
 
-    output_image.save("output.png").expect("Failed to save output image");
+    output_image.save("output.png").expect(TRANSLATION.err_failed_to_save_output_image())
 }
 
 fn load_font_image(font_path: &str) -> image::DynamicImage {
-    image::open(font_path).expect("Failed to open font image")
+    image::open(font_path).expect(TRANSLATION.err_failed_to_open_font_image())
 }
 
 fn calculate_character_dimensions(
     font_image: &image::DynamicImage,
-    sequence: &str,
-    chars_per_row: u32,
-    top_margin: u32,
-    bottom_margin: u32,
-    left_margin: u32,
-    right_margin: u32
+    config: &FontConfig
 ) -> (u32, u32) {
-    let char_width = (font_image.width() - (left_margin + right_margin)) / chars_per_row;
-    let char_height = (font_image.height() - (top_margin + bottom_margin)) / (sequence.len() as u32 / chars_per_row);
+    let char_width = (font_image.width() - (config.left_margin + config.right_margin)) / config.chars_per_row;
+    let char_height = (font_image.height() - (config.top_margin + config.bottom_margin)) / (config.sequence.len() as u32 / config.chars_per_row);
     (char_width, char_height)
 }
 
@@ -69,6 +63,7 @@ fn find_character_position(character: char, sequence: &str) -> Option<usize> {
     pos
 }
 
+#[allow(clippy::too_many_arguments)]
 fn copy_character_to_output(
     font_image: &image::DynamicImage,
     output_image: &mut ImageBuffer<image::Rgba<u8>, Vec<u8>>,
