@@ -39,7 +39,7 @@ fn main() {
     });
 
     // Set the global LANG_OVERRIDE variable
-    let _ = LANG_OVERRIDE.set(lang_override);
+    let _ = LANG_OVERRIDE.set(lang_override.clone());
 
     if args.len() < 3 || args[1] == "--help" {
         println!("{}", TRANSLATION.full_help());
@@ -51,7 +51,7 @@ fn main() {
         return;
     }
 
-    if args.len() == 3 {  // If only font and text are provided
+    if args.len() == 3 || (args.len() == 5 && lang_override.is_some()) {  // If only font and text are provided | lang override
         generate_image_from_config(&args)
     } else {
         generate_image_from_args(&args);
