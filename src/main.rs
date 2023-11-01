@@ -42,12 +42,12 @@ fn main() {
     let _ = LANG_OVERRIDE.set(lang_override);
 
     if args.len() < 3 || args[1] == "--help" {
-        eprintln!("{}", TRANSLATION.full_help());
+        println!("{}", TRANSLATION.full_help());
         return;
     }
 
     if args.len() < 3 || args[1] == "--version" {
-        eprintln!("{}", TRANSLATION.version());
+        println!("{}", TRANSLATION.version());
         return;
     }
 
