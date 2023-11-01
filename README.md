@@ -91,7 +91,7 @@ _/examples/4138906397_0dc616813b_o.png_
 ```bash
 bitmap_type_tracer examples/4138906397_0dc616813b_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
 ```
-![](./examples/4138906397_0dc616813b_o.png_tolik518.png)  
+![](examples/outputs/4138906397_0dc616813b_o.png_tolik518.png)  
 
 ---------------------------------------
 
@@ -100,7 +100,7 @@ _/examples/4138906425_29cbc92641_o.png_
 ```bash
 bitmap_type_tracer examples/4138906425_29cbc92641_o.png " \!\"    '()*+,-.\\0123456789:; = ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 10
 ```
-![](./examples/4138906425_29cbc92641_o.png_tolik518.png)  
+![](examples/outputs/4138906425_29cbc92641_o.png_tolik518.png)  
 
 ---------------------------------------
   
@@ -109,7 +109,7 @@ _/examples/FONT34.png_
 ```bash
 bitmap_type_tracer examples/FONT34.png " \!      ()  , . 0123456789:; - ? ABCDEFGHIJKLMNOPQRSTUVWXYZ " tolik518 20 --bottom 150 --threshold 20
 ```
-![](./examples/FONT34.png_tolik518.png)  
+![](examples/outputs/FONT34.png_tolik518.png)  
 
 ---------------------------------------
   
@@ -120,7 +120,7 @@ bitmap_type_tracer examples/font228.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ>.: " tolik51
 ```  
 Since the number are missing from the sequence, they are not generated in the image and it tries to fill the space with the background.   
 The background was not recognized properly, so it was filled with the brown instead of black.  
-![](./examples/font228.png_tolik518.png)  
+![](examples/outputs/font228.png_tolik518.png)  
 
 ---------------------------------------
   
@@ -130,7 +130,7 @@ _/examples/font239r.png_
 bitmap_type_tracer examples/font239r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ()\!?.,’  " tolik518 7 --bottom 4 --threshold 1
 ```
 Since the number are missing from the sequence, they are not generated in the image and it tries to fill the space with the background, but the threshold is set to 1, so it doesn't fill the space with the transparent background since it recognized the black background.  
-![](./examples/font239r.png_tolik518.png)  
+![](examples/outputs/font239r.png_tolik518.png)  
 
 ---------------------------------------
 
@@ -140,7 +140,7 @@ _/examples/font244r.png_
 bitmap_type_tracer examples/font244r.png "ALW6BMX7CNY8DOZ9EP*\!FQ0?GR1.HS2 IT3 JU4 KV5 " tolik518 4 --threshold 30 
 ```  
 We needed a threshold of 30 to remove the black background.   
-![](./examples/font244r.png_tolik518.png)  
+![](examples/outputs/font244r.png_tolik518.png)  
 
 ---------------------------------------
 
@@ -150,7 +150,7 @@ _/examples/font248r.png_
 bitmap_type_tracer examples/font248r.png "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 \!?." tolik518 20 --threshold 60
 ```
 To have a better result, we needed a threshold of 60 to remove the black background.  
-![](./examples/font248r.png_tolik518.png)  
+![](examples/outputs/font248r.png_tolik518.png)  
 
 ---------------------------------------
 
@@ -160,7 +160,7 @@ _/examples/MEGAD.png_
 bitmap_type_tracer examples/MEGAD.png "'() +,-. 0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ     ! =?     " tolik518 10 --bottom 10 --threshold 1
 ```  
 In this example, we needed to add a bottom margin of 10 for the characters to align properly.  
-![](./examples/MEGAD.png_tolik518.png)  
+![](examples/outputs/MEGAD.png_tolik518.png)  
 
 ---------------------------------------
 
@@ -169,7 +169,7 @@ _/examples/MEGAD2.png_
 ```bash
 bitmap_type_tracer examples/MEGAD2.png "AGMSY+:4BHNTZ\!;5CIOU.?06DJPV;(17EKQW\")28FLRX-'39" tolik518 8 --bottom 3 --threshold 1
 ```  
-![](./examples/MEGAD2.png_tolik518.png)  
+![](examples/outputs/MEGAD2.png_tolik518.png)  
 
 
 ## Contributions
