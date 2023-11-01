@@ -63,6 +63,7 @@ fn find_character_position(character: char, sequence: &str) -> Option<usize> {
     pos
 }
 
+#[allow(clippy::too_many_arguments)]
 fn copy_character_to_output(
     font_image: &image::DynamicImage,
     output_image: &mut ImageBuffer<image::Rgba<u8>, Vec<u8>>,
