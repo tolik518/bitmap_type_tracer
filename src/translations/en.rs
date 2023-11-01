@@ -11,7 +11,7 @@ impl super::Translation for English
         \u{20} If your font already has a configuration file: \n\
         \u{20} bitmap_type_tracer <path_to_bitmap_font> <text>\n\n\
         \u{20} If you want to generate a configuration file: \n\
-        \u{20} bitmap_type_tracer <path_to_bitmap_font> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json]"
+        \u{20} bitmap_type_tracer <path_to_bitmap_font> <sequence> <text> <chars_per_row> [--top VALUE] [--bottom VALUE] [--left VALUE] [--right VALUE] [--threshold VALUE] [--save-json] [--lang en|it|fr|tr|...]"
     }
 
     fn help_parameters(&self) -> &'static str {
@@ -35,7 +35,8 @@ impl super::Translation for English
         \u{20}\u{20} --threshold VALUE       the value to determine the threshold for making the background transparent (0-255)\n\
         \u{20}\u{20} --save-json             save the configuration to a json file\n\
         \u{20}\u{20} --help                  print this help message\n\
-        \u{20}\u{20} --version               print the version of the program"
+        \u{20}\u{20} --version               print the version of the program\n\
+        \u{20}\u{20} --lang                  Specify the language (en|it|fr|tr|...) of the application. Default is your system lang or en"
     }
 
     fn help_example_usage(&self) -> &'static str {"For examples usage check out the README.md in the repository"}

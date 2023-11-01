@@ -35,7 +35,8 @@ impl super::Translation for French
         \u{20}\u{20} --threshold VALUE       la valeur pour déterminer le seuil de transparence du fond (0-255)\n\
         \u{20}\u{20} --save-json             enregistrer la configuration dans un fichier json\n\
         \u{20}\u{20} --help                  imprimer ce message d'aide\n\
-        \u{20}\u{20} --version               imprimer la version du programme"
+        \u{20}\u{20} --version               imprimer la version du programme\n\
+        \u{20}\u{20} --lang                  Specify the language (en|it|fr|tr|...) of the application. Default is your system lang or en" // needs translation
     }
 
     fn help_example_usage(&self) -> &'static str {"Pour des exemples d'utilisation, consultez le README.md dans le référentiel"}

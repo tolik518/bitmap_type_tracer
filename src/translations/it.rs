@@ -35,7 +35,8 @@ impl super::Translation for Italian
         \u{20}\u{20} --threshold VALUE       il valore per determinare la soglia per rendere trasparente lo sfondo (0-255)\n\
         \u{20}\u{20} --save-json             salva la configurazione in un file json\n\
         \u{20}\u{20} --help                  stampa questo messaggio di aiuto\n\
-        \u{20}\u{20} --version               stampa la versione del programma"
+        \u{20}\u{20} --version               stampa la versione del programma\n\
+        \u{20}\u{20} --lang                  Specify the language (en|it|fr|tr|...) of the application. Default is your system lang or en" // needs translation
     }
 
     fn help_example_usage(&self) -> &'static str {"Per esempi di utilizzo consulta il README.md nel repository"}

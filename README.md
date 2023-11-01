@@ -74,6 +74,8 @@ This command will generate an image using a previously saved font configuration 
 
 - `--save-json`: Save the provided configuration as a JSON file, making it easier to reuse in the future.
 
+- `--lang en|it|fr|en`: Specify the language of the text. Default is en.
+
 ## Modules
 
 - `main.rs`: The main driver of the application, handling command line arguments and invoking image generation.

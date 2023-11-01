@@ -10,11 +10,17 @@ use image_processing::generate_image;
 
 use locale_config::Locale;
 use once_cell::sync::Lazy;
+use once_cell::sync::OnceCell;
 use crate::translations::Translation;
 use std::sync::Arc;
 
+static LANG_OVERRIDE: OnceCell<Option<String>> = OnceCell::new();
 static TRANSLATION: Lazy<Arc<dyn Translation>> = Lazy::new(|| {
-    let locale = Locale::user_default().to_string().split('-').next().unwrap().to_owned();
+    let locale = if let Some(override_lang) = LANG_OVERRIDE.get() {
+        override_lang.clone().unwrap_or("en".to_owned())
+    } else {
+        Locale::user_default().to_string().split('-').next().unwrap_or("en").to_owned()
+    };
     let boxed_translation = translations::get_translation_for_locale(&locale);
     Arc::from(boxed_translation)
 });
@@ -22,6 +28,18 @@ static TRANSLATION: Lazy<Arc<dyn Translation>> = Lazy::new(|| {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
+
+    // Check for --lang argument and set it globally
+    let mut lang_override: Option<String> = None;
+
+    args.iter().enumerate().for_each(|(i, arg)| {
+        if arg == "--lang" && i + 1 < args.len() {
+            lang_override = Some(args[i + 1].clone());
+        }
+    });
+
+    // Set the global LANG_OVERRIDE variable
+    let _ = LANG_OVERRIDE.set(lang_override);
 
     if args.len() < 3 || args[1] == "--help" {
         eprintln!("{}", TRANSLATION.full_help());

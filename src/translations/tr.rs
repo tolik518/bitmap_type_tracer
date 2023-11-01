@@ -35,7 +35,8 @@ impl super::Translation for Turkish
         \u{20}\u{20} --threshold VALUE       arka planı saydam hale getirmeye yönelik eşiği belirleyen değer (0-255)\n\
         \u{20}\u{20} --save-json             yapılandırmayı json dosyasına kaydedin\n\
         \u{20}\u{20} --help                  yardım mesajını yazdır\n\
-        \u{20}\u{20} --version               programın sürümünü yazdır"
+        \u{20}\u{20} --version               programın sürümünü yazdır\n\
+        \u{20}\u{20} --lang                  Specify the language (en|it|fr|tr|...) of the application. Default is your system lang or en" // needs translation
     }
 
     fn help_example_usage(&self) -> &'static str {"Nasıl kullanıldığını öğrenmek için README.md dosyasını okuyun"}
