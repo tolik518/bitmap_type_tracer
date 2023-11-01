@@ -80,7 +80,7 @@ This command will generate an image using a previously saved font configuration 
 
 - `--save-json`: Save the provided configuration as a JSON file, making it easier to reuse in the future.
 
-- `--lang en|it|fr|en`: Specify the language of the text. Default is en.
+- `--lang en|it|fr|en`: Specify the language of the text. Default is your System language if supported, otherwise its set to en.
 
 ## Modules
 
