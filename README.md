@@ -1,10 +1,10 @@
 <div align="center">  
 
 # ![bitmap_type_tracer](./logo.png)
-![Crates.io](https://img.shields.io/crates/v/bitmap_type_tracer)
-![Crates.io](https://img.shields.io/crates/d/bitmap_type_tracer)
-![GitHub issues](https://img.shields.io/github/issues/tolik518/bitmap_type_tracer)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/tolik518/bitmap_type_tracer)
+[![Crates.io](https://img.shields.io/crates/v/bitmap_type_tracer)](https://crates.io/crates/bitmap_type_tracer)
+[![Crates.io](https://img.shields.io/crates/d/bitmap_type_tracer)](https://crates.io/crates/bitmap_type_tracer)
+[![GitHub issues](https://img.shields.io/github/issues/tolik518/bitmap_type_tracer)](https://github.com/tolik518/bitmap_type_tracer/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/tolik518/bitmap_type_tracer)](https://github.com/tolik518/bitmap_type_tracer/pulls)
 
 `bitmap_type_tracer` is a utility tool, written in Rust, for generating text-images using a provided bitmap-font (and a set of configuration parameters).
 
