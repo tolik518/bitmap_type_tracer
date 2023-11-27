@@ -25,13 +25,13 @@ static TRANSLATION: Lazy<Arc<dyn Translation>> = Lazy::new(|| {
     Arc::from(boxed_translation)
 });
 
-
 fn main() {
     let args: Vec<String> = env::args().collect();
 
     // Check for --lang argument and set it globally
     let mut lang_override: Option<String> = None;
 
+    // Search for --lang argument
     args.iter().enumerate().for_each(|(i, arg)| {
         if arg == "--lang" && i + 1 < args.len() {
             lang_override = Some(args[i + 1].clone());
@@ -51,7 +51,8 @@ fn main() {
         return;
     }
 
-    if args.len() == 3 || (args.len() == 5 && lang_override.is_some()) {  // If only font and text are provided | lang override
+    if args.len() == 3 || (args.len() == 5 && lang_override.is_some()) {
+        // If only font and text are provided or lang override is present
         generate_image_from_config(&args)
     } else {
         generate_image_from_args(&args);
@@ -102,15 +103,15 @@ fn generate_image_from_args(args: &[String]) {
 }
 
 fn validate_args(args: &[String]) -> bool {
-    // Base case: we always need at least 5 arguments.
+    // Base case: we need at least 5 arguments
     if args.len() < 5 {
         return false;
     }
 
-    let save_json_flag = args.contains(&"--save-json".to_string());
+    let save_json_flag_exists = args.contains(&"--save-json".to_string());
 
     // Calculate the number of expected arguments excluding the flag
-    let expected_args = if save_json_flag {
+    let expected_args = if save_json_flag_exists {
         args.len() - 1
     } else {
         args.len()
