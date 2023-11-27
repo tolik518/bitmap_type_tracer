@@ -2,13 +2,15 @@ use crate::translations::{
     tr::Turkish,
     en::English,
     it::Italian,
-    fr::French
+    fr::French,
+    ar::Arabic
 };
 
 mod en;
 mod tr;
 mod it;
 mod fr;
+mod ar;
 
 pub fn get_translation_for_locale(locale: &str) -> Box<dyn Translation> {
     match locale {
@@ -16,6 +18,7 @@ pub fn get_translation_for_locale(locale: &str) -> Box<dyn Translation> {
         "tr" => Box::new(Turkish),
         "it" => Box::new(Italian),
         "en" => Box::new(English),
+        "ar" => Box::new(Arabic),
         _ => Box::new(English),
     }
 }
