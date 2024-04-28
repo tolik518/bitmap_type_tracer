@@ -54,7 +54,6 @@ fn main() {
     // we have exactly 3 arguments if the user wants to generate from config
     // if additionally the language is set, then we have 5 arguments
     if args.len() == 3 || (args.len() == 5 && lang_override.is_some()) {
-        // If only font and text are provided or lang override is present
         generate_image_from_config(&args)
     } else {
         generate_image_from_args(&args);
@@ -75,10 +74,7 @@ fn generate_image_from_config(args: &[String]) {
 }
 
 fn generate_image_from_args(args: &[String]) {
-    if !validate_args(args) {
-        eprintln!("{}", TRANSLATION.full_help());
-        return;
-    }
+    validate_args(args).expect(&*TRANSLATION.full_help());
 
     let (font_path, sequence, text, chars_per_row) = parse_mandatory_args(args);
     let (top_margin, bottom_margin, left_margin, right_margin, threshold) = parse_optional_args(args);
@@ -104,10 +100,10 @@ fn generate_image_from_args(args: &[String]) {
     );
 }
 
-fn validate_args(args: &[String]) -> bool {
+fn validate_args(args: &[String]) -> Result<(),()> {
     // Base case: we need at least 5 arguments
     if args.len() < 5 {
-        return false;
+        return Err(())
     }
 
     let save_json_flag_exists = args.contains(&"--save-json".to_string());
@@ -119,7 +115,11 @@ fn validate_args(args: &[String]) -> bool {
         args.len()
     };
 
-    expected_args <= 5 || (expected_args - 5) % 2 == 0
+    if expected_args <= 5 || (expected_args - 5) % 2 == 0 {
+        Ok(())
+    } else {
+        Err(())
+    }
 }
 
 fn parse_mandatory_args(args: &[String]) -> (&String, &String, &String, u32) {

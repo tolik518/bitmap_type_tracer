@@ -39,11 +39,13 @@ pub fn generate_image(
         remove_background(&mut output_image, config.threshold);
     }
 
-    output_image.save("output.png").expect(TRANSLATION.err_failed_to_save_output_image())
+    output_image.save("output.png")
+        .expect(TRANSLATION.err_failed_to_save_output_image())
 }
 
 fn load_font_image(font_path: &str) -> image::DynamicImage {
-    image::open(font_path).expect(TRANSLATION.err_failed_to_open_font_image())
+    image::open(font_path)
+        .expect(TRANSLATION.err_failed_to_open_font_image())
 }
 
 fn calculate_character_dimensions(
@@ -52,21 +54,24 @@ fn calculate_character_dimensions(
 ) -> (u32, u32) {
     let char_width = (font_image.width() - (config.left_margin + config.right_margin)) / config.chars_per_row;
     let char_height = (font_image.height() - (config.top_margin + config.bottom_margin)) / (config.sequence.len() as u32 / config.chars_per_row);
+
     (char_width, char_height)
 }
 
 fn find_character_position(character: char, sequence: &str) -> Option<usize> {
     let pos = sequence.find(character);
+
     if pos.is_none() && character.is_ascii_lowercase() {
-        return sequence.find(character.to_ascii_uppercase());
+        return sequence.find(character.to_ascii_uppercase())
     }
+
     pos
 }
 
 #[allow(clippy::too_many_arguments)]
 fn copy_character_to_output(
     font_image: &image::DynamicImage,
-    output_image: &mut ImageBuffer<image::Rgba<u8>, Vec<u8>>,
+    output_image: &mut ImageBuffer<Rgba<u8>, Vec<u8>>,
     position: usize,
     char_width: u32,
     char_height: u32,
@@ -100,7 +105,7 @@ fn estimate_bg_color(image: &ImageBuffer<Rgba<u8>, Vec<u8>>) -> Rgba<u8> {
 }
 
 fn fill_with_bg_color(
-    output_image: &mut ImageBuffer<image::Rgba<u8>, Vec<u8>>,
+    output_image: &mut ImageBuffer<Rgba<u8>, Vec<u8>>,
     start_x: u32,
     start_y: u32,
     width: u32,
@@ -121,7 +126,8 @@ fn remove_background(image: &mut ImageBuffer<Rgba<u8>, Vec<u8>>, threshold: u8) 
         for y in 0..height {
             let pixel = *image.get_pixel(x, y);
             if is_close_to(pixel, bg_color, threshold) {
-                image.put_pixel(x, y, Rgba([pixel[0], pixel[1], pixel[2], 0]));  // Make it transparent
+                // make it transparent
+                image.put_pixel(x, y, Rgba([pixel[0], pixel[1], pixel[2], 0]));
             }
         }
     }
@@ -129,6 +135,6 @@ fn remove_background(image: &mut ImageBuffer<Rgba<u8>, Vec<u8>>, threshold: u8) 
 
 fn is_close_to(a: Rgba<u8>, b: Rgba<u8>, threshold: u8) -> bool {
     (a[0] as i32 - b[0] as i32).abs() <= threshold as i32 &&
-        (a[1] as i32 - b[1] as i32).abs() <= threshold as i32 &&
-        (a[2] as i32 - b[2] as i32).abs() <= threshold as i32
+    (a[1] as i32 - b[1] as i32).abs() <= threshold as i32 &&
+    (a[2] as i32 - b[2] as i32).abs() <= threshold as i32
 }
