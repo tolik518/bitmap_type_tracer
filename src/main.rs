@@ -51,6 +51,8 @@ fn main() {
         return;
     }
 
+    // we have exactly 3 arguments if the user wants to generate from config
+    // if additionally the language is set, then we have 5 arguments
     if args.len() == 3 || (args.len() == 5 && lang_override.is_some()) {
         // If only font and text are provided or lang override is present
         generate_image_from_config(&args)
@@ -140,11 +142,11 @@ fn parse_optional_args(args: &[String]) -> (u32, u32, u32, u32, u8) {
 
     for i in 5..args.len() {
         match args[i].as_str() {
-            "--top" => top_margin = parse_argument(&args[i+1],TRANSLATION.err_invalid_top_margin()),
-            "--bottom" => bottom_margin = parse_argument(&args[i+1],TRANSLATION.err_invalid_bottom_margin()),
-            "--left" => left_margin = parse_argument(&args[i+1],TRANSLATION.err_invalid_left_margin()),
-            "--right" => right_margin = parse_argument(&args[i+1],TRANSLATION.err_invalid_right_margin()),
-            "--threshold" => threshold = parse_argument(&args[i+1],TRANSLATION.err_invalid_threshold()),
+            "--top" => top_margin = parse_argument(&args[i+1], TRANSLATION.err_invalid_top_margin()),
+            "--bottom" => bottom_margin = parse_argument(&args[i+1], TRANSLATION.err_invalid_bottom_margin()),
+            "--left" => left_margin = parse_argument(&args[i+1], TRANSLATION.err_invalid_left_margin()),
+            "--right" => right_margin = parse_argument(&args[i+1], TRANSLATION.err_invalid_right_margin()),
+            "--threshold" => threshold = parse_argument(&args[i+1], TRANSLATION.err_invalid_threshold()),
             _ => {}
         }
     }
