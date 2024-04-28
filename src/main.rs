@@ -41,13 +41,13 @@ fn main() {
     // Set the global LANG_OVERRIDE variable
     let _ = LANG_OVERRIDE.set(lang_override.clone());
 
-    if args.len() < 3 || args[1] == "--help" {
-        println!("{}", TRANSLATION.full_help());
+    if args[1] == "--version" {
+        println!("{}", TRANSLATION.version());
         return;
     }
 
-    if args.len() < 3 || args[1] == "--version" {
-        println!("{}", TRANSLATION.version());
+    if args.len() < 3 || args[1] == "--help" {
+        println!("{}", TRANSLATION.full_help());
         return;
     }
 
