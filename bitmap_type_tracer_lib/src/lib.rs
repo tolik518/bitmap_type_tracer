@@ -1,12 +1,9 @@
-#![allow(clippy::expect_fun_call)]
+pub mod font_config;
+pub mod image_processing;
+pub mod translations;
 
-use std::env;
-mod font_config;
-mod image_processing;
-mod translations;
-
-use font_config::{FontConfig, load_font_config, save_font_config};
-use image_processing::generate_image;
+pub use font_config::{FontConfig, load_font_config, save_font_config};
+pub use image_processing::generate_image;
 
 use locale_config::Locale;
 use once_cell::sync::Lazy;
@@ -14,8 +11,8 @@ use once_cell::sync::OnceCell;
 use crate::translations::Translation;
 use std::sync::Arc;
 
-static LANG_OVERRIDE: OnceCell<Option<String>> = OnceCell::new();
-static TRANSLATION: Lazy<Arc<dyn Translation>> = Lazy::new(|| {
+pub static LANG_OVERRIDE: OnceCell<Option<String>> = OnceCell::new();
+pub static TRANSLATION: Lazy<Arc<dyn Translation>> = Lazy::new(|| {
     let locale = if let Some(override_lang) = LANG_OVERRIDE.get() {
         override_lang.clone().unwrap_or("en".to_owned())
     } else {
@@ -25,42 +22,7 @@ static TRANSLATION: Lazy<Arc<dyn Translation>> = Lazy::new(|| {
     Arc::from(boxed_translation)
 });
 
-fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    // Check for --lang argument and set it globally
-    let mut lang_override: Option<String> = None;
-
-    // Search for --lang argument
-    args.iter().enumerate().for_each(|(i, arg)| {
-        if arg == "--lang" && i + 1 < args.len() {
-            lang_override = Some(args[i + 1].clone());
-        }
-    });
-
-    // Set the global LANG_OVERRIDE variable
-    let _ = LANG_OVERRIDE.set(lang_override.clone());
-
-    if args[1] == "--version" {
-        println!("{}", TRANSLATION.version());
-        return;
-    }
-
-    if args.len() < 3 || args[1] == "--help" {
-        println!("{}", TRANSLATION.full_help());
-        return;
-    }
-
-    // we have exactly 3 arguments if the user wants to generate from config
-    // if additionally the language is set, then we have 5 arguments
-    if args.len() == 3 || (args.len() == 5 && lang_override.is_some()) {
-        generate_image_from_config(&args)
-    } else {
-        generate_image_from_args(&args);
-    }
-}
-
-fn generate_image_from_config(args: &[String]) {
+pub fn generate_image_from_config(args: &[String]) {
     let font_path = &args[1];
     let text = &args[2];
 
@@ -73,7 +35,7 @@ fn generate_image_from_config(args: &[String]) {
     );
 }
 
-fn generate_image_from_args(args: &[String]) {
+pub fn generate_image_from_args(args: &[String]) {
     validate_args(args).expect(&*TRANSLATION.full_help());
 
     let (font_path, sequence, text, chars_per_row) = parse_mandatory_args(args);

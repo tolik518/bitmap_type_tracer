@@ -1,0 +1,8 @@
+[package]
+name = "bitmap_type_tracer_cli"
+authors = ["tolik518"]
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bitmap_type_tracer_lib = { path = "../bitmap_type_tracer_lib" }

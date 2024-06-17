@@ -1,0 +1,36 @@
+[package]
+name = "bitmap_type_tracer_lib"
+authors = ["tolik518"]
+version = "1.1.0"
+edition = "2021"
+description = "bitmap_type_trace is a utility tool to generate images from font bitmaps with customizable configurations"
+readme = "../README_text_only.md"
+repository="https://github.com/tolik518/bitmap_type_tracer"
+license = "MIT OR Apache-2.0 OR copyleft-next-0.3.1 OR CC-BY-4.0"
+keywords = ["bitmap", "font", "demoscene", "typography", "bitmap-font"]
+categories = ["parser-implementations", "multimedia::images", "command-line-utilities"]
+exclude = ["examples", "README.md", "logo.png", "output.png", ".gitignore"]
+#publish = true
+
+[profile.release]
+panic = "abort"
+debug = false
+debug-assertions = false
+overflow-checks = false
+incremental = false
+opt-level = 3
+strip = true
+lto = true
+
+[lib]
+path = "src/lib.rs"
+
+
+[dependencies]
+image = "^0.23.14" # Image processing
+serde = { version = "^1.0", features = [] } # Serialization
+serde_json = "^1.0" # JSON
+serde_derive = { version = "^1.0", features = [] } # Serialization
+locale_config = "^0.3" # System locale
+once_cell = { version = "^1.8", features = [] } # Lazy statics
+
